@@ -1,85 +1,32 @@
-#include<iostream>
-
-#include<cstdio>
-
-#include<algorithm>
-
-#include<cmath>
-
-#include<cstring>
-
+nclude <iostream>
 using namespace std;
-
-int c,n,k;
-
-char mp[30][30];
-
-int v[30];
-
-void dfs(int pos,int k)
-
-{
-
-	    if(k==0)
-
-		        {
-
-				        c++;
-
-					        return ;
-
-						    }
-
-	        if(pos>=n)
-
-			        return ;
-
-		    for(int i=0;i<n;i++)
-
-			        {
-
-					        if(mp[pos][i]=='#'&&v[i]==0)
-
-							        {
-
-									            v[i]=1;
-
-										                dfs(pos+1,k-1);
-
-												            v[i]=0;
-
-													            }
-
-						    }
-
-		        if(pos+k<n)dfs(pos+1,k);
-
-			        return ;
-
-}
-
 int main()
-
 {
-
-	    while(cin>>n>>k&&(n!=-1||k!=-1))
-
-		        {
-
-				        c=0;
-
-					        for(int i=0;i<n;i++)
-
-							            scanf("%s",mp[i]);
-
-						        memset(v,0,sizeof(v));
-
-							        dfs(0,k);
-
-								        cout<<c<<endl;
-
-									    }
-
-	        return 0;
-
+	int i,max,k,x;
+	cout<<"请输入最多*的个数:";
+	cin>>max;//输入的数控制菱形的大小
+	cout<<endl;
+	for(i=max;i>=0;i--)
+	{
+		for(k=i;k>=0;k--)//k循环控制每行前面的空格
+			cout<<" ";
+		for(x=i;x<=max-1;x++)//x循环控制每行*和空格的个数
+		{
+			cout<<"*";
+			cout<<" ";
+		}
+		cout<<endl;
+	}
+	for(i=max-1;i>=0;i--)//此后为上面循环的逆过程
+	{
+		for(k=i;k<=max;k++)
+			cout<<" ";
+		for(x=i;x>=1;x--)
+		{
+			cout<<"*";
+			cout<<" ";
+		}
+		cout<<endl;
+	}
+	return 0;
 }
